@@ -17,15 +17,16 @@ main {
     flex: 1;
     max-width: 1920px;
     margin: 0px auto;
+    padding: 0 16px;
 }
 
 
-h1{
+h1 {
     color: #FFCB08;
 }
 
 
-span{
+span {
     color: #FFCB08;
     color: whitesmoke;
 }
@@ -34,4 +35,39 @@ span{
 .pokemon-icon {
     width: 150px;
     height: auto;
+}
+
+
+.seperator {
+    display: flex;
+    width: 100%;
+    height: 2px;
+    background-color: #FFCB08;
+}
+
+
+.content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+
+.content-container {
+    height: 220px;
+    width: 200px;
+    background-color: black;
+   /*  background-color: #8ba0d1; */
+    border-radius: 8px;
+    border: 2px solid #FFCB08;
+    border: 2px solid #8ba0d1;
+}
+
+
+.content-container:hover{
+cursor: pointer;
+transition: transform 0.5s ease-in-out;
+    transform: scale(1.02);
 }
