@@ -1,1 +1,37 @@
-/* STYLE */
+/* MAIN STYLE */
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: #3758A3;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 1920px;
+    margin: 0px auto;
+}
+
+
+h1{
+    color: #FFCB08;
+}
+
+
+span{
+    color: #FFCB08;
+    color: whitesmoke;
+}
+
+
+.pokemon-icon {
+    width: 150px;
+    height: auto;
+}
