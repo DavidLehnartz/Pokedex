@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/footer.css">
     <link rel="stylesheet" href="./styles/combo_classes.css">
+    <link rel="stylesheet" href="./styles/color_type.css">
     <script src="./scripts/templates.js"></script>
-    <script src="./script.js"></script>
+    
 </head>
 
-<body>
+<body onload=" init()">
     <header class="header-wrapper div ">
         <div class="header-content ">
             <img class="pokemon-icon" src="./assets/icons/pokemon_logo.png">
@@ -29,39 +30,30 @@
     <div class="seperator"></div>
     <main>
         <h1>PokeDex</h1>
-        <div class="card-content-wrapper">
-            <div class="card-container">  <!-- Poke Color -->
+        <div id="pokemon_card" class="card-content-wrapper">
+            <!-- <div class="card-container">  
                 <div class="card-header">
-                    <h2>$ Name $</h2> <!-- Name -->
-                    <p>$ # 69 $</p> <!-- Number -->
+                    <h2>$ Name $</h2>
+                    <p>$ # 69 $</p> 
                 </div>
-                <div> <!-- Poke img -->
+                <div> 
                    $ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum tenetur dolores eligendi deleniti
                     nam error distinctio quibusdam fugiat aspernatur molestiae vero porro temporibus iure perspiciatis,
                     neque hic harum, esse labore. $
                 </div>
-                <div class="card-footer"> <!-- Type -->
+                <div class="card-footer">  
                      $ TYPE $ 
                 </div>
-            </div>
+            </div> -->
 
-
-            <div class="card-container">
-                <div class="card-header">
-                    <h2>name</h2>
-                </div>
-            </div>
-
-
-
+          <!--   <div class="card-container"></div>
             <div class="card-container"></div>
             <div class="card-container"></div>
             <div class="card-container"></div>
             <div class="card-container"></div>
             <div class="card-container"></div>
             <div class="card-container"></div>
-            <div class="card-container"></div>
-            <div class="card-container"></div>
+            <div class="card-container"></div> -->
         </div>
     </main>
     <div class="seperator"></div>
@@ -71,6 +63,8 @@
             <img class="character-pika-icon" src="./assets/icons/pikachu.png" alt="">
         </div>
     </footer>
+    <script src="./script.js"></script>
+  
 </body>
 
 </html>
