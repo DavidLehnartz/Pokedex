@@ -33,8 +33,15 @@ h2 {
 }
 
 
-p{
+h2::first-letter {
+    text-transform: capitalize;
     margin: 0px;
+}
+
+
+p {
+    margin: 0px;
+    font-weight: bold;
 }
 
 span {
@@ -90,18 +97,29 @@ span {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: black;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    background-color: ivory;
+    border: 2px solid black;
     border-radius: 8px;
     padding: 8px 0px;
     margin-bottom: 16px;
-    color: #fbfbfb;
+    color: #000000;
 }
 
 
-.card-footer{
+.pokemon-image-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 64px;
+    align-items: center;
+}
+
+
+.pokemon-image {
+    width: 200px;
+    height: 250px;
+}
+
+
+.card-footer {
+    display: flex;
+    justify-content: center;
 }
