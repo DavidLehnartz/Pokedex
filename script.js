@@ -3,20 +3,26 @@
 /* MAIN SCRIPT */
 
 
+let offset = 0;
+let limit = 20;
+
 //Init (ONLOAD)
 function init() {
     fetchPokeData();
+   /*  document.getElementById('load_more_btn'); */
+    document.getElementById('load_more_btn').addEventListener('click', fetchPokeData); // Event-Listener für den Button
 }
 
 
 // Fetch Pokemon Infos
 async function fetchPokeData() { // Gibt mir die standart daten, um details zu bekommen (fetchPokemonDetails(url)) 
-    let url = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=0';
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     let response = await fetch(url);
     let pokeArray = await response.json();
 
     console.log(pokeArray.results);
     renderPokemonCard(pokeArray.results);
+    offset += limit;
 }
 
 
@@ -30,7 +36,7 @@ async function fetchPokemonDetails(url) { // Gibt mir die detail daten wieder
 
 async function renderPokemonCard(pokeArray) {
     let pokemonCardRef = document.getElementById('pokemon_card');
-    pokemonCardRef.innerHTML = '';
+    /* pokemonCardRef.innerHTML = ''; */
 
     for (let indexPokeCard = 0; indexPokeCard < pokeArray.length; indexPokeCard++) {
         let pokemonDetails = await fetchPokemonDetails(pokeArray[indexPokeCard].url);  // holt die details für jedes pokemon
