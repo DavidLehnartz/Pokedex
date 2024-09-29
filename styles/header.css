@@ -20,7 +20,9 @@
 
 
 input {
-    color: #FFCB08;
+    font-size: 14px;
+    font-weight: bold;
+    color: #3758A3;
     border-radius: 16px;
     border: 2px solid #3758A3;
     padding: 8px 32px;
