@@ -22,9 +22,20 @@ main {
 
 
 h1 {
+    font-size: 64px;
     color: #FFCB08;
+    text-align: center;
 }
 
+
+h2 {
+    margin: 0px;
+}
+
+
+p{
+    margin: 0px;
+}
 
 span {
     color: #FFCB08;
@@ -46,7 +57,7 @@ span {
 }
 
 
-.content-wrapper {
+.card-content-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -55,19 +66,42 @@ span {
 }
 
 
-.content-container {
-    height: 220px;
-    width: 200px;
-    background-color: black;
-   /*  background-color: #8ba0d1; */
+.card-container {
+    height: 350px;
+    width: 250px;
+    background-color: rgb(196, 27, 27);
+    /*   background-color: #679aeb; */
     border-radius: 8px;
     border: 2px solid #FFCB08;
-    border: 2px solid #8ba0d1;
+    /* border: 2px solid #8ba0d1;
+    border: 2px solid #fbfbfb; */
+    padding: 8px;
 }
 
 
-.content-container:hover{
-cursor: pointer;
-transition: transform 0.5s ease-in-out;
+.card-container:hover {
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
     transform: scale(1.02);
+}
+
+
+.card-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-radius: 8px;
+    padding: 8px 0px;
+    margin-bottom: 16px;
+    color: #fbfbfb;
+}
+
+
+.card-footer{
+    display: flex;
+    justify-content: center;
+    margin-top: 64px;
 }
