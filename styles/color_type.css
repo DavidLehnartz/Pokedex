@@ -1,0 +1,109 @@
+
+/* Pokemon Types CSS */
+
+.type-grass {
+    background-color:#7AC74C; /* Grün */
+    color: white;
+}
+
+
+.type-fire {
+    background-color: #C22E28; /* Rot-Orange */
+    color: white;
+}
+
+
+.type-water {
+    background-color: #6390F0; /* Blau */
+    color: white;
+}
+
+
+.type-electric {
+    background-color: #F7D02C; /* Gelb */
+    color: black;
+}
+
+
+.type-ice {
+    background-color: #96D9D6; /* Hellblau */
+    color: black;
+}
+
+
+.type-fighting {
+    background-color:#EE8130; /* Rotbraun */
+    color: white;
+}
+
+
+.type-poison {
+    background-color: #A33EA1; /* Lila */
+    color: white;
+}
+
+
+.type-ground {
+    background-color: #E2BF65; /* Sandgelb */
+    color: black;
+}
+
+
+.type-flying {
+    background-color: #A98FF3; /* Hellviolett */
+    color: black;
+}
+
+
+.type-psychic {
+    background-color: #F95587; /* Rosa */
+    color: white;
+}
+
+
+.type-bug {
+    background-color: #A8B820; /* Olivgrün */
+    color: black;
+}
+
+
+.type-rock {
+    background-color: #B6A136; /* Braun */
+    color: black;
+}
+
+
+.type-ghost {
+    background-color: #735797; /* Dunkellila */
+    color: white;
+}
+
+
+.type-dragon {
+    background-color: #6F35FC; /* Dunkelviolett */
+    color: white;
+}
+
+
+.type-dark {
+    background-color: #705746; /* Dunkelbraun */
+    color: white;
+}
+
+
+.type-steel {
+    background-color: #B7B7CE; /* Hellgrau */
+    color: black;
+}
+
+
+.type-fairy {
+    background-color: #D685AD; /* Hellrosa */
+    color: black;
+}
+
+
+.type-normal {
+    background-color: #A8A77A; /* Hellrosa */
+    color: black;
+}
