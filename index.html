@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./styles/header.css">
     <link rel="stylesheet" href="./styles/footer.css">
     <link rel="stylesheet" href="./styles/combo_classes.css">
+    <link rel="stylesheet" href="./styles/overlay_dialog.css">
     <link rel="stylesheet" href="./styles/color_type.css">
     <script src="./scripts/templates.js"></script>
 
@@ -35,6 +36,28 @@
     </header>
     <div class="seperator"></div>
     <main>
+        <div onclick="closeDialog()" id="overlay" class="overlay d_none ">
+            <div onclick="event.stopPropagation()" id="dialog_pokemon_card">
+               <!--  <div class="dialog-pokemon-container">
+                    <div class="dialog-card-header">
+                        <h2>${pokemon.name}</h2>
+                        <p># ${pokemon.id}</p>
+                    </div>
+                    <div class="dialog-pokemon-image-wrapper">
+                        <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}"
+                            alt="${pokemon.name} image">
+                    </div>
+                    <div class="dialog-card-footer">
+                        ${pokemon.types[0].type.name}
+                        ${pokemon.types[0].type.name}
+                    </div>
+                    <button>
+                        Close
+                    </button>
+                </div> -->
+            </div>
+        </div>
+
         <h1>PokeDex</h1>
         <div id="pokemon_card" class="card-content-wrapper">
             <!-- <div class="card-container type-${pokemon.types[0].type.name}">  
@@ -52,7 +75,7 @@
             </div> -->
         </div>
         <div class="load-more-btn-wrapper">
-            <button onclick=" fetchPokeData()" id="load_more_btn" class="load-more-btn">
+            <button onclick="loadMorePokemon()" id="load_more_btn" class="load-more-btn">
                 Load More
             </button>
         </div>
@@ -68,5 +91,14 @@
     <script src="./script.js"></script>
 
 </body>
+
+<!-- <table>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table> -->
 
 </html>

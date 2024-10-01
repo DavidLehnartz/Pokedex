@@ -2,15 +2,19 @@
 
 /* MAIN SCRIPT */
 
-
 let offset = 0;
 let limit = 20;
+
 
 //Init (ONLOAD)
 function init() {
     fetchPokeData();
-   /*  document.getElementById('load_more_btn'); */
-    document.getElementById('load_more_btn').addEventListener('click', fetchPokeData); // Event-Listener für den Button
+}
+
+
+// Load More Pokemon
+function loadMorePokemon() {
+    fetchPokeData();
 }
 
 
@@ -45,21 +49,34 @@ async function renderPokemonCard(pokeArray) {
 }
 
 
-// Pokemon Card Template
-function getpokemonCardTemplate(pokemon) {
-    return `
-            <div class="card-container type-${pokemon.types[0].type.name}">  
-                <div class="card-header">
-                    <h2>${pokemon.name}</h2>
-                    <p># ${pokemon.id} </p> 
-                </div>
-                <div class="pokemon-image-wrapper"> 
-                   <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name} image">
-                </div>
-                <div class="card-footer">  
-                ${pokemon.types[0].type.name}
-                ${pokemon.types[0].type.name}
-                </div>
-            </div>
-    `;
+async function renderPokemonMainInfoDialog() {
+    let mainInfoContentRef = document.getElementById('species_info');
+    mainInfoContentRef.innerHTML = getMainInfoTemplate();
 }
+
+
+// Öffnet den Dialog und füllt ihn mit den Pokémon-Details
+async function openDialog(pokemonId) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
+    let pokemonDetails = await fetchPokemonDetails(url);
+
+    let dialogContentRef = document.getElementById('dialog_pokemon_card');
+    dialogContentRef.innerHTML = getpokemonCardDialogTemplate(pokemonDetails); // Füllt den Dialog mit dem ausgewählten Pokemon
+
+    document.getElementById('overlay').classList.remove('d_none');
+}
+
+
+// Close Dialog (ONCLICK)
+function closeDialog() {
+    document.getElementById('overlay').classList.add('d_none');
+}
+
+
+
+
+
+
+
+
+
