@@ -53,9 +53,29 @@
 }
 
 
+.pokemon-image-dialog{
+    width: 300px;
+    height: 250px;
+}
+
+
 .dialog-pokemon-image-wrapper {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.back-next-img{
+    width: 50px;
+    height: 50px;
+}
+
+
+.back-next-img:hover{
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+    transform: scale(1.1);
 }
 
 
@@ -89,6 +109,8 @@
     cursor: pointer;
     transition: transform 0.5s ease-in-out;
     transform: scale(1.05);
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 
@@ -98,34 +120,89 @@
 }
 
 
-.species-wrapper {
+.species-main-wrapper {
     display: flex;
     justify-content: center;
     margin-top: 16px;
 }
 
 
-tbody {}
+.species-stats-wrapper{
+    display: contents;
+}
 
 
-td {}
+tbody {
+    display: flex;
+    flex-direction: column;
+}
 
 
-tr {
+.skill-bar-fill {
+    height: 10px; /* Höhe der Balken */
+    background-color: #4caf50; /* Farbe der Balken */
+    width: 0%; /* Initialwert, wird durch JavaScript gesetzt */
+    border-radius: 16px;
+    transition: width 0.5s ease; /* Sanfte Animation beim Füllen der Balken */
+}
+
+.td-stats-info-right {
+    width: 100%;
+    padding: 4px;
+    background-color: #f1f1f1;
+    border-radius: 16px;
+    position: relative;
+}
+
+.td-stats-info-left {
+    width: 100px;
+}
+
+
+/* .td-stats-info-left {
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.td-stats-info-right{
+    border-radius: 16px;
+    background-color: red;
+   // width: 100%;
+    padding-left: 8px;
+    font-size: 12px;
+} */
+
+
+.tr-main-info {
     display: flex;
     justify-content: space-between;
-    gap: 32px;
+    gap: 120px;
     color: black;
     background-color: ivory;
     border: 2px solid black;
     border-radius: 32px;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     padding: 4px 32px;
     margin-bottom: 16px;
 }
 
 
+.tr-stats-info{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 8px;
+    color: black;
+    background-color: ivory;
+    border: 2px solid black;
+    border-radius: 32px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px 4px 32px;
+    margin-top: 16px;
+}
 
 
 .dialog-btn {
@@ -135,7 +212,7 @@ tr {
     border: 3px solid #3758A3;
     font-size: 16px;
     font-weight: bold;
-   margin-top: 8px;
+    margin-top: 8px;
     padding: 8px 32px;
 }
 

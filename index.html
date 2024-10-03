@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="icon" type="image/x-icon" href="#">
+    <link rel="icon" type="image/x-icon" href="./assets/icons/pokeball-icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +19,23 @@
     <link rel="stylesheet" href="./styles/overlay_dialog.css">
     <link rel="stylesheet" href="./styles/color_type.css">
     <script src="./scripts/templates.js"></script>
-
 </head>
+
+
+<!-- 
+!!! TASKS !!!
+
+*** dialog pokemon durchklickbar, vorher und nächste
+*** suchfunktion ab drei buchstaben, werden pokemon angezeigt
+*** type icons in pokemon karten anzeigen 
+*** evo chain
+*** loading spinner 
+*** wenn pokemon laden, ist loading button disabled
+*** hintergrund nicht scrollbar, wenn dialog geöffnet ist
+*** responsive
+*** js, html, css überarbeiten und aufräumen
+*** mit firebase arbeiten? nicht sicher
+-->
 
 <body onload=" init()">
     <header class="header-wrapper div ">
@@ -38,7 +53,7 @@
     <main>
         <div onclick="closeDialog()" id="overlay" class="overlay d_none ">
             <div onclick="event.stopPropagation()" id="dialog_pokemon_card">
-               <!--  <div class="dialog-pokemon-container">
+                <!--  <div class="dialog-pokemon-container">
                     <div class="dialog-card-header">
                         <h2>${pokemon.name}</h2>
                         <p># ${pokemon.id}</p>
@@ -91,14 +106,5 @@
     <script src="./script.js"></script>
 
 </body>
-
-<!-- <table>
-    <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table> -->
 
 </html>

@@ -12,7 +12,8 @@ function getpokemonCardTemplate(pokemon) {
                     <p># ${pokemon.id} </p> 
                 </div>
                 <div class="pokemon-image-wrapper"> 
-                   <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name} image">
+                   <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}" 
+                       alt="${pokemon.name} image">  
                 </div>
                 <div class="card-footer">  
                 ${pokemon.types[0].type.name}
@@ -32,8 +33,10 @@ function getpokemonCardDialogTemplate(pokemon) {
                     <p># ${pokemon.id}</p>
                 </div>
                 <div class="dialog-pokemon-image-wrapper">
-                    <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}"
+                    <img onclick="showPreviousPokemon()" class="back-next-img" src="./assets/icons/backward.png" alt="backward">
+                    <img class="pokemon-image-dialog" src="${pokemon.sprites.other.dream_world.front_default}"
                         alt="${pokemon.name} image">
+                    <img onclick="showNextPokemon()" class="back-next-img" src="./assets/icons/forward.png" alt="forward">
                 </div>
                 <div class="dialog-card-type">
                     ${pokemon.types[0].type.name}
@@ -41,36 +44,87 @@ function getpokemonCardDialogTemplate(pokemon) {
                 </div>
                 <div class="dialog-pokemon-info-wrapper">
                     <div class="dialog-pokemon-info-btns-container">
-                      <button class="dialog-pokemon-info-btns">Main</button>
-                      <button class="dialog-pokemon-info-btns">Stats</button>
-                      <button class="dialog-pokemon-info-btns">Evo</button>
+                      <button onclick="renderPokemonMainInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Main</button>
+                      <button onclick="renderPokemonStatsInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Stats</button>
+                      <button onclick="renderPokemonEvoInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Evo</button>
                     </div>
                 </div>
-                <div id="species_info">
-                    <table class="species-wrapper">
-                        <tbody >
-                            <tr>
-                                <td>Height:</td>
-                                <td>$a</td>
-                            </tr>
-                            <tr>
-                                <td>Weight:</td>
-                                <td>$b</td>
-                            </tr>
-                            <tr>
-                                <td>Base Experience:</td>
-                                <td>$c</td>
-                            </tr>
-                            <tr>
-                                <td>$Moves:</td>
-                                <td>$d</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <button onclick="closeDialog()" class="dialog-btn">
-                    Close
-                </button>
+
+                <div id="species_info"></div>
+
+                   <button onclick="closeDialog()" class="dialog-btn">
+                       Close
+                   </button>
            </div>
     `;
+}
+
+
+// Render Main Info In Dialog
+function getMainInfoTemplate(pokemon) {
+    return `
+            <table class="species-main-wrapper">
+                <tbody>
+                    <tr class="tr-main-info">
+                        <td>Height:</td>
+                        <td>${pokemon.height}</td>
+                    </tr>
+                    <tr class="tr-main-info">
+                        <td>Weight:</td>
+                        <td>${pokemon.weight}</td>
+                    </tr>
+                    <tr class="tr-main-info">
+                        <td>Base Experience:</td>
+                        <td>${pokemon.base_experience}</td>
+                    </tr>
+                    <tr class="tr-main-info">
+                        <td>Main Move:</td>
+                        <td>${pokemon.moves[0].move.name}</td>
+                    </tr>
+                </tbody>
+            </table>
+    `;
+}
+
+
+// Render Stats Info In Dialog
+function getStatsInfoTemplate(pokemon) {
+    return `
+                <table class="species-stats-wrapper">
+                    <tbody>
+                        <tr class="tr-stats-info">
+                            <td class="td-stats-info-left">${pokemon.stats[0].stat.name}:</td>
+                            <td class="td-stats-info-right">
+                             <div id="hp_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                            </td>
+                        </tr>
+                        <tr class="tr-stats-info">
+                            <td class="td-stats-info-left">${pokemon.stats[1].stat.name}:</td>
+                            <td class="td-stats-info-right">
+                             <div id="attack_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                            </td>
+                        </tr>
+                        <tr class="tr-stats-info">
+                            <td class="td-stats-info-left">${pokemon.stats[2].stat.name}:</td>
+                            <td class="td-stats-info-right">
+                             <div id="defense_bar"  class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                            </td>
+                        </tr>    
+                        <tr class="tr-stats-info">
+                            <td class="td-stats-info-left">${pokemon.stats[5].stat.name}:</td>
+                            <td class="td-stats-info-right">
+                             <div id="speed_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>            
+    `;
+}
+
+
+// Render Evo Chain In Dialog
+function getEvoInfoTemplate(pokemon) {
+    return `
+   
+`;
 }
