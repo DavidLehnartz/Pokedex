@@ -48,7 +48,7 @@ async function fetchPokemonDetails(url) { // Gibt mir die detail daten wieder
 
 async function renderPokemonCard(pokeArray) {
     let pokemonCardRef = document.getElementById('pokemon_card');
-    pokemonCardRef.innerHTML = '';
+    /* pokemonCardRef.innerHTML = ''; */
 
     for (let indexPokeCard = 0; indexPokeCard < pokeArray.length; indexPokeCard++) {
         let pokemonDetails = await fetchPokemonDetails(pokeArray[indexPokeCard].url);  // holt die details für jedes pokemon
@@ -108,7 +108,7 @@ async function openDialog(pokemonId) {
 
 
 function renderSkillBars(pokemonDetails) {
-    let maxStatValue = 150;
+    let maxStatValue = 100;
 
     let hpPercent = (pokemonDetails.stats[0].base_stat / maxStatValue) * 100;
     document.getElementById('hp_bar').style.width = `${hpPercent}%`;

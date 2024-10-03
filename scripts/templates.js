@@ -67,11 +67,11 @@ function getMainInfoTemplate(pokemon) {
                 <tbody>
                     <tr class="tr-main-info">
                         <td>Height:</td>
-                        <td>${pokemon.height}</td>
+                        <td>${(pokemon.height*10)/100} m</td>
                     </tr>
                     <tr class="tr-main-info">
                         <td>Weight:</td>
-                        <td>${pokemon.weight}</td>
+                        <td>${(pokemon.weight*10)/100} kg</td>
                     </tr>
                     <tr class="tr-main-info">
                         <td>Base Experience:</td>
