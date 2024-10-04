@@ -30,12 +30,10 @@ async function fetchPokeData() { // Gibt mir die standart daten, um details zu b
     let pokeArray = await response.json();
 
     allPokemons.push(...pokeArray.results)
-    console.log(pokeArray.results);
+    console.log(allPokemons);
     renderPokemonCard(pokeArray.results);
     offset += limit;
 }
-console.log(allPokemons);
-
 
 
 async function fetchPokemonDetails(url) { // Gibt mir die detail daten wieder
@@ -54,6 +52,16 @@ async function renderPokemonCard(pokeArray) {
         let pokemonDetails = await fetchPokemonDetails(pokeArray[indexPokeCard].url);  // holt die details für jedes pokemon
         pokemonCardRef.innerHTML += getpokemonCardTemplate(pokemonDetails);
     }
+}
+
+
+function renderPokemonCardDialog(pokemonDetails) {
+    let dialogContentRef = document.getElementById('dialog_pokemon_card');
+    dialogContentRef.innerHTML = getpokemonCardDialogTemplate(pokemonDetails);  // Setze die neuen Details
+
+    renderPokemonMainInfoDialog(pokemonDetails.id);  // Aktualisiere den Main-Info-Bereich
+
+    document.getElementById('overlay').classList.remove('d_none');
 }
 
 
@@ -98,17 +106,18 @@ async function openDialog(pokemonId) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
     let pokemonDetails = await fetchPokemonDetails(url);
 
-    let dialogContentRef = document.getElementById('dialog_pokemon_card');
-    dialogContentRef.innerHTML = getpokemonCardDialogTemplate(pokemonDetails); // Füllt den Dialog mit dem ausgewählten Pokemon
+   renderPokemonCardDialog(pokemonDetails);
+}
 
-    renderPokemonMainInfoDialog(pokemonId);
 
-    document.getElementById('overlay').classList.remove('d_none');
+// Close Dialog (ONCLICK)
+function closeDialog() {
+    document.getElementById('overlay').classList.add('d_none');
 }
 
 
 function renderSkillBars(pokemonDetails) {
-    let maxStatValue = 100;
+    let maxStatValue = 255;
 
     let hpPercent = (pokemonDetails.stats[0].base_stat / maxStatValue) * 100;
     document.getElementById('hp_bar').style.width = `${hpPercent}%`;
@@ -124,24 +133,29 @@ function renderSkillBars(pokemonDetails) {
 }
 
 
-// Close Dialog (ONCLICK)
-function closeDialog() {
-    document.getElementById('overlay').classList.add('d_none');
-}
+    async function showNextPokemon() {
+        if (currentPokemonIndex < allPokemons.length - 1) {
+            currentPokemonIndex++;  // Gehe zum nächsten Pokémon
+        } else {
+            currentPokemonIndex = 0;  // Gehe zum ersten Pokémon, wenn du am Ende bist
+        }
+    
+        let pokemon = allPokemons[currentPokemonIndex];  // Hole das Pokémon aus der Liste
+        let pokemonDetails = await fetchPokemonDetails(pokemon.url);  // Hole die Details dieses Pokémons
+    
+        renderPokemonCardDialog(pokemonDetails);  // Aktualisiere den Dialog
+    }
+    
 
-
-// Next Pokemon (ONCLICK)
-function showpreviousPokemon() {
+async function showPreviousPokemon() {
     if (currentPokemonIndex > 0) {
-        currentPokemonIndex--;
+        currentPokemonIndex--;  // Gehe zum vorherigen Pokémon
+    } else {
+        currentPokemonIndex = allPokemons.length - 1;  // Gehe zum letzten Pokémon, wenn du am Anfang bist
     }
-}
 
+    let pokemon = allPokemons[currentPokemonIndex];  // Hole das Pokémon aus der Liste
+    let pokemonDetails = await fetchPokemonDetails(pokemon.url);  // Hole die Details dieses Pokémons
 
-
-// Previous Pokemon (ONCLICK)
-function showNextPokemon() {
-    if (currentPokemonIndex < allPokemons.length - 1) {
-        currentPokemonIndex++; // Gehe zum nächsten Pokémon
-    }
+    renderPokemonCardDialog(pokemonDetails);  // Aktualisiere den Dialog
 }

@@ -82,6 +82,8 @@
 .dialog-card-type {
     display: flex;
     justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
 }
 
 
@@ -90,7 +92,7 @@
     border: 2px solid black;
     background-color: ivory;
     border-radius: 32px;
-    margin-top: 16px;
+    margin: 16px 0px;
 }
 
 
@@ -123,7 +125,6 @@
 .species-main-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: 16px;
 }
 
 
@@ -149,7 +150,7 @@ tbody {
 .td-stats-info-right {
     width: 100%;
     padding: 4px;
-    background-color: #f1f1f1;
+    background-color: #000000;
     border-radius: 16px;
     position: relative;
     overflow: hidden;
@@ -202,7 +203,7 @@ tbody {
     font-size: 12px;
     font-weight: bold;
     padding: 4px 8px 4px 32px;
-    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 
@@ -213,7 +214,6 @@ tbody {
     border: 3px solid #3758A3;
     font-size: 16px;
     font-weight: bold;
-    margin-top: 8px;
     padding: 8px 32px;
 }
 

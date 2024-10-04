@@ -15,9 +15,13 @@ function getpokemonCardTemplate(pokemon) {
                    <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}" 
                        alt="${pokemon.name} image">  
                 </div>
-                <div class="card-footer">  
-                ${pokemon.types[0].type.name}
-                ${pokemon.types[0].type.name}
+                
+                <div class="type-icon-wrapper"> 
+                      <img class="type-icons" src="./assets/icons/${pokemon.types[0].type.name}.svg" 
+                      alt="${pokemon.types[0].type.name} icon">
+                   
+                      ${pokemon.types[1] ? `<img class="type-icons" src="./assets/icons/${pokemon.types[1].type.name}.svg" 
+                      alt="${pokemon.types[1].type.name} icon"> ` : ''}
                 </div>
             </div>
     `;
@@ -39,8 +43,10 @@ function getpokemonCardDialogTemplate(pokemon) {
                     <img onclick="showNextPokemon()" class="back-next-img" src="./assets/icons/forward.png" alt="forward">
                 </div>
                 <div class="dialog-card-type">
-                    ${pokemon.types[0].type.name}
-                    ${pokemon.types[0].type.name}
+                     <img class="type-icons" src="./assets/icons/${pokemon.types[0].type.name}.svg" 
+                      alt="${pokemon.types[0].type.name} icon">
+                    ${pokemon.types[1] ? `<img class="type-icons" src="./assets/icons/${pokemon.types[1].type.name}.svg" 
+                      alt="${pokemon.types[1].type.name} icon"> ` : ''}
                 </div>
                 <div class="dialog-pokemon-info-wrapper">
                     <div class="dialog-pokemon-info-btns-container">
