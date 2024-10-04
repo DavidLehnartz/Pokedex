@@ -43,9 +43,9 @@ function getpokemonCardDialogTemplate(pokemon) {
                     <img onclick="showNextPokemon()" class="back-next-img" src="./assets/icons/forward.png" alt="forward">
                 </div>
                 <div class="dialog-card-type">
-                     <img class="type-icons" src="./assets/icons/${pokemon.types[0].type.name}.svg" 
+                     <img class="type-icons-dialog" src="./assets/icons/${pokemon.types[0].type.name}.svg" 
                       alt="${pokemon.types[0].type.name} icon">
-                    ${pokemon.types[1] ? `<img class="type-icons" src="./assets/icons/${pokemon.types[1].type.name}.svg" 
+                    ${pokemon.types[1] ? `<img class="type-icons-dialog" src="./assets/icons/${pokemon.types[1].type.name}.svg" 
                       alt="${pokemon.types[1].type.name} icon"> ` : ''}
                 </div>
                 <div class="dialog-pokemon-info-wrapper">

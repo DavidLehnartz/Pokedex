@@ -87,6 +87,14 @@
 }
 
 
+.type-icons-dialog{
+    width: 40px;
+    height: 40px;
+    border: 2px solid ivory;
+    border-radius: 100px;  
+}
+
+
 .dialog-pokemon-info-wrapper {
     display: flex;
     border: 2px solid black;
