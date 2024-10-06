@@ -81,9 +81,9 @@ async function renderPokemonCard(allPokemons) {
 // Run -> openDialog func.
 function renderPokemonCardDialog(pokemonDetails) {
     let dialogContentRef = document.getElementById('dialog_pokemon_card');
-    dialogContentRef.innerHTML = getpokemonCardDialogTemplate(pokemonDetails);  
+    dialogContentRef.innerHTML = getpokemonCardDialogTemplate(pokemonDetails);
 
-    renderPokemonMainInfoDialog(pokemonDetails.id);  
+    renderPokemonMainInfoDialog(pokemonDetails.id);
 
     document.getElementById('overlay').classList.remove('d_none');
 }
@@ -153,15 +153,15 @@ function renderSkillBars(pokemonDetails) {
 // (ONCLICK)
 async function showNextPokemon() {  // ******** Irgendwas stimmt hier nicht ?????
     if (currentPokemonIndex < allPokemons.length - 1) {
-        currentPokemonIndex++;  
+        currentPokemonIndex++;
     } else {
-        currentPokemonIndex = 0; 
+        currentPokemonIndex = 0;
     }
 
-    let pokemon = allPokemons[currentPokemonIndex]; 
-    let pokemonDetails = await fetchPokemonDetails(pokemon.url); 
+    let pokemon = allPokemons[currentPokemonIndex];
+    let pokemonDetails = await fetchPokemonDetails(pokemon.url);
 
-     renderPokemonCardDialog(pokemonDetails);   
+    renderPokemonCardDialog(pokemonDetails);
 }
 
 // (ONCLICK)
@@ -169,13 +169,13 @@ async function showPreviousPokemon() {    // ******** Irgendwas stimmt hier nich
     if (currentPokemonIndex > 0) {
         currentPokemonIndex--;  // 
     } else {
-        currentPokemonIndex = allPokemons.length - 1;  
+        currentPokemonIndex = allPokemons.length - 1;
     }
 
-    let pokemon = allPokemons[currentPokemonIndex]; 
-    let pokemonDetails = await fetchPokemonDetails(pokemon.url);  
+    let pokemon = allPokemons[currentPokemonIndex];
+    let pokemonDetails = await fetchPokemonDetails(pokemon.url);
 
-    renderPokemonCardDialog(pokemonDetails);  
+    renderPokemonCardDialog(pokemonDetails);
 }
 
 
@@ -196,6 +196,12 @@ function endLoadingScreen() {
 
     let hideScrollBar = document.getElementById('hide_scrollbar');
     hideScrollBar.classList.remove('hide_scrollbar');
+}
+
+
+// Error Message Network
+function errorMessageNetwork() {
+let errorMessage =document.getElementById('')
 }
 
 

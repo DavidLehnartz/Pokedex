@@ -34,6 +34,7 @@
 *** suchfunktion ab drei buchstaben, werden pokemon angezeigt
 *** evo chain
 *** loading spinner problem mit der positionierung
+*** ERROR MESSAGE; WENN NETZWERKFEHLER
 *** responsive
 *** js, html, css überarbeiten und aufräumen
 *** mit firebase arbeiten? nicht sicher
@@ -53,17 +54,15 @@
     </header>
     <div class="seperator"></div>
     <main>
-      <div id="loading_screen" class="overlay-loading-spinner d_none"><!-- loading spinner -->
-        
-          <div class="loading-spinner"></div>
-          <div class="loader-container">
-            <div class="loading-text">
-              <span class="dots-start"></span>
-              Loading
-              <span class="dots"></span>
-            </div>
+      <div id="loading_screen" class="overlay-loading-spinner d_none">
+        <div class="loading-spinner"></div>
+        <div class="loader-container">
+          <div class="loading-text">
+            <span class="dots-start"></span>
+            Loading
+            <span class="dots"></span>
           </div>
-        
+        </div>
       </div>
 
       <div onclick="closeDialog()" id="overlay" class="overlay d_none">
@@ -85,6 +84,26 @@
                         Close
                     </button>
                 </div> -->
+        </div>
+      </div>
+
+      <div id="error_message" class="overlay-error-message">
+        <div id="dialog_error_message">
+          <div class="dialog-error-message-wrapper">
+            <img
+              class="error-icon"
+              src="./assets/icons/warning.png"
+              alt="error"
+            />
+            <div class="error-text">
+                <img class="close-img" src="./assets/icons/close-white.png" alt="close">
+              <h1 class="main-text">Ooops !</h1>
+              <p>Something went wrong. A network error occured.</p>
+              <div class="try-again-btn-wrapper">
+                <button class="try-again-btn">Try Again</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
