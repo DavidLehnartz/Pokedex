@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex</title>
-    <link rel="icon" type="image/x-icon" href="./assets/icons/pokeball-icon.png">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/icons/pokeball-icon.png"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./styles/header.css">
-    <link rel="stylesheet" href="./styles/footer.css">
-    <link rel="stylesheet" href="./styles/combo_classes.css">
-    <link rel="stylesheet" href="./styles/overlay_dialog.css">
-    <link rel="stylesheet" href="./styles/color_type.css">
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/footer.css" />
+    <link rel="stylesheet" href="./styles/combo_classes.css" />
+    <link rel="stylesheet" href="./styles/overlay_dialog.css" />
+    <link rel="stylesheet" href="./styles/loading_spinner.css" />
+    <link rel="stylesheet" href="./styles/color_type.css" />
     <script src="./scripts/templates.js"></script>
-</head>
+  </head>
 
-
-<!-- 
+  <!-- 
 !!! TASKS !!!
 
 *** dialog pokemon durchklickbar, vorher und nächste
 *** suchfunktion ab drei buchstaben, werden pokemon angezeigt
 *** evo chain
-*** loading spinner 
-*** wenn pokemon laden, ist loading button disabled
-*** hintergrund nicht scrollbar, wenn dialog geöffnet ist
+*** loading spinner problem mit der positionierung
 *** responsive
 *** js, html, css überarbeiten und aufräumen
 *** mit firebase arbeiten? nicht sicher
 -->
 
-<body onload=" init()">
-    <header class="header-wrapper div ">
-        <div class="header-content ">
-            <img class="pokemon-icon" src="./assets/icons/pokemon_logo.png">
-            <form action="">
-                <input type="text" required placeholder="Search your Pokemon...">
-                <button class="header-btn">
-                    <b>Search</b>
-                </button>
-            </form>
-        </div>
+  <body onload=" init()" id="hide_scrollbar">
+    <header class="header-wrapper div">
+      <div class="header-content">
+        <img class="pokemon-icon" src="./assets/icons/pokemon_logo.png" />
+        <form action="">
+          <input type="text" required placeholder="Search your Pokemon..." />
+          <button class="header-btn">
+            <b>Search</b>
+          </button>
+        </form>
+      </div>
     </header>
     <div class="seperator"></div>
     <main>
-        <div onclick="closeDialog()" id="overlay" class="overlay d_none ">
-            <div onclick="event.stopPropagation()" id="dialog_pokemon_card">
-                <!--  <div class="dialog-pokemon-container">
+      <div id="loading_screen" class="overlay-loading-spinner d_none"><!-- loading spinner -->
+        
+          <div class="loading-spinner"></div>
+          <div class="loader-container">
+            <div class="loading-text">
+              <span class="dots-start"></span>
+              Loading
+              <span class="dots"></span>
+            </div>
+          </div>
+        
+      </div>
+
+      <div onclick="closeDialog()" id="overlay" class="overlay d_none">
+        <div onclick="event.stopPropagation()" id="dialog_pokemon_card">
+          <!--  <div class="dialog-pokemon-container">
                     <div class="dialog-card-header">
                         <h2>${pokemon.name}</h2>
                         <p># ${pokemon.id}</p>
@@ -69,12 +85,12 @@
                         Close
                     </button>
                 </div> -->
-            </div>
         </div>
+      </div>
 
-        <h1>PokeDex</h1>
-        <div id="pokemon_card" class="card-content-wrapper">
-            <!-- <div class="card-container type-${pokemon.types[0].type.name}">  
+      <h1>PokeDex</h1>
+      <div id="pokemon_card" class="card-content-wrapper">
+        <!-- <div class="card-container type-${pokemon.types[0].type.name}">  
                 <div class="card-header">
                     <h2>${pokemon.name}</h2>
                     <p># ${pokemon.id} </p> 
@@ -87,23 +103,30 @@
                 ${pokemon.types[0].type.name}
                 </div>
             </div> -->
-        </div>
-        <div class="load-more-btn-wrapper">
-            <button onclick="loadMorePokemon()" id="load_more_btn" class="load-more-btn">
-                Load More
-            </button>
-        </div>
-
+      </div>
+      <div class="load-more-btn-wrapper">
+        <button
+          onclick="loadPokemon()"
+          id="load_more_btn"
+          class="load-more-btn"
+        >
+          Load More
+        </button>
+      </div>
     </main>
+
     <div class="seperator"></div>
+
     <footer class="footer-wrapper div">
-        <div class="footer-content div">
-            <img class="character-ash-icon" src="./assets/icons/ash.png" alt="">
-            <img class="character-pika-icon" src="./assets/icons/pikachu.png" alt="">
-        </div>
+      <div class="footer-content div">
+        <img class="character-ash-icon" src="./assets/icons/ash.png" alt="" />
+        <img
+          class="character-pika-icon"
+          src="./assets/icons/pikachu.png"
+          alt=""
+        />
+      </div>
     </footer>
     <script src="./script.js"></script>
-
-</body>
-
+  </body>
 </html>

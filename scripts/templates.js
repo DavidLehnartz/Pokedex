@@ -45,9 +45,11 @@ function getpokemonCardDialogTemplate(pokemon) {
                 <div class="dialog-card-type">
                      <img class="type-icons-dialog" src="./assets/icons/${pokemon.types[0].type.name}.svg" 
                       alt="${pokemon.types[0].type.name} icon">
+
                     ${pokemon.types[1] ? `<img class="type-icons-dialog" src="./assets/icons/${pokemon.types[1].type.name}.svg" 
                       alt="${pokemon.types[1].type.name} icon"> ` : ''}
                 </div>
+            <div class="test">
                 <div class="dialog-pokemon-info-wrapper">
                     <div class="dialog-pokemon-info-btns-container">
                       <button onclick="renderPokemonMainInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Main</button>
@@ -61,6 +63,7 @@ function getpokemonCardDialogTemplate(pokemon) {
                    <button onclick="closeDialog()" class="dialog-btn">
                        Close
                    </button>
+            </div>
            </div>
     `;
 }

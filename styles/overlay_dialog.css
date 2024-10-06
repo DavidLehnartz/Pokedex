@@ -32,6 +32,9 @@
 }
 
 
+.test{}
+
+
 .dialog-pokemon-container {
     display: flex;
     justify-content: center;
@@ -230,4 +233,36 @@ tbody {
     cursor: pointer;
     transition: transform 0.5s ease-in-out;
     transform: scale(1.05);
+}
+
+
+
+
+
+
+.evo-chain {
+    margin-top: 20px;
+}
+
+.evo-chain-content {
+    display: flex;
+    align-items: center;
+}
+
+.evo-stage {
+    text-align: center;
+}
+
+.evo-stage img {
+    width: 100px;
+    height: 100px;
+}
+
+.evo-stage p {
+    font-weight: bold;
+}
+
+.evo-arrow {
+    margin: 0 20px;
+    font-size: 24px;
 }
