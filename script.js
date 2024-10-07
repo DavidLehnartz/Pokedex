@@ -35,6 +35,7 @@ function loadPokemon() {
     try {
         fetchPokemonData();
     } catch (error) {
+        showErrorMessageNetwork();
         console.log(error);
     } finally {
         /* renderPokemonCard(); */
@@ -199,9 +200,44 @@ function endLoadingScreen() {
 }
 
 
-// Error Message Network
-function errorMessageNetwork() {
-let errorMessage =document.getElementById('')
+// Render Error Message Network
+function renderErrorMessage() {
+    let errorMessage = document.getElementById('dialog_error_message');
+    errorMessage.innerHTML = getErrorMessageTemplate();
+}
+
+
+// Try To Get Pokemon After Problem Occured
+function tryToGetPokemonAfterFail() {
+    let hideScrollBar = document.getElementById('hide_scrollbar');
+    hideScrollBar.classList.remove('hide_scrollbar');
+
+    let errorMessage = document.getElementById('error_message');
+    errorMessage.classList.add('d_none');
+
+    loadPokemon();
+}
+
+
+//Show Error Message Network
+function showErrorMessageNetwork() {
+    let errorMessage = document.getElementById('error_message');
+    errorMessage.classList.remove('d_none');
+
+    let hideScrollBar = document.getElementById('hide_scrollbar');
+    hideScrollBar.classList.add('hide_scrollbar');
+
+    renderErrorMessage();
+}
+
+
+// Close Error Message Network
+function closeErrorMessageNetwork() {
+    let errorMessage = document.getElementById('error_message');
+    errorMessage.classList.add('d_none');
+
+    let hideScrollBar = document.getElementById('hide_scrollbar');
+    hideScrollBar.classList.add('hide_scrollbar');
 }
 
 
