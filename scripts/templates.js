@@ -131,6 +131,26 @@ function getStatsInfoTemplate(pokemon) {
 }
 
 
+// Error Message Template
+function getErrorMessageTemplate() {
+    return `
+           <div class="dialog-error-message-wrapper">
+                <img class="error-icon" src="./assets/icons/warning.png" alt="error"/>
+                <div class="error-text">
+                  <img onclick="closeErrorMessageNetwork()" class="close-img" src="./assets/icons/close-white.png" alt="close"/>
+                  <h1 class="main-text">Ooops !</h1>
+                  <p>Something went wrong. A network error occured.</p>
+                  <div class="try-again-btn-wrapper">
+                    <buttonon click=" tryToGetPokemonAfterFail()" class="try-again-btn">
+                      Try Again
+                    </button>
+                  </div>
+                </div>
+           </div>
+    `;
+}
+
+
 // Render Evo Chain In Dialog
 function getEvoInfoTemplate(pokemon) {
     return `
