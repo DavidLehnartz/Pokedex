@@ -4,8 +4,6 @@
 
 let allPokemons = [];
 
-let currentPokemonIndex = 0;
-
 let offset = 0;
 
 let limit = 40;
@@ -16,53 +14,47 @@ let evoChain = [];
 //Init (ONLOAD)
 function init() {
     loadPokemon();
-    /* fetchPokemonData(); */
-    /* fetchPokemonEvoChain(); */
 }
-
-
-// Load More Pokemon (ONCLICK BUTTON)
-/* function loadMorePokemon() {
-    fetchPokemonData();
-
-} */
 
 
 // Load Pokemons
 function loadPokemon() {
-
-    startLoadingScreen();
     try {
         fetchPokemonData();
     } catch (error) {
         showErrorMessageNetwork();
         console.log(error);
-    } finally {
-        /* renderPokemonCard(); */
-        /*   endLoadingScreen(); */
-    }
+    } 
 }
 
 
-// (ONLOAD) Fetch Pokemon Infos
-async function fetchPokemonData() { // Gibt mir die standart daten, um details zu bekommen (fetchPokemonDetails(url)) 
-    let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
-    let response = await fetch(url);
-    let responseAsJson = await response.json();
-
-    allPokemons.push(...responseAsJson.results)
-    console.log(allPokemons);
-    renderPokemonCard(responseAsJson.results);
-    offset += limit;
+async function fetchPokemonData() {
+    startLoadingScreen();
+    try {
+        let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+        let response = await fetch(url);
+        let responseAsJson = await response.json();
+        allPokemons.push(...responseAsJson.results);
+        renderPokemonCard(responseAsJson.results);
+        offset += limit;
+    } catch (error) {
+        showErrorMessageNetwork();
+        console.error(error);
+    } 
 }
 
 
-// Fetch Pokemon Details
+// Fetch Pokemon Details Test ******************
 async function fetchPokemonDetails(url) { // Gibt mir die detail daten wieder
-    let response = await fetch(url);  // Detail-URL aufrufen
-    let pokemonDetails = await response.json();  // detaildaten holen
-    console.log(pokemonDetails);
-    return pokemonDetails;  // Gibt die Details zurück name, stats, ability und so weiter
+    try {
+        let response = await fetch(url);  // Detail-URL aufrufen
+        if (!response.ok) throw new Error("Failed to fetch Pokemon details");
+        let pokemonDetails = await response.json();  // detaildaten holen
+        return await pokemonDetails;
+    } catch (error) {
+        console.log(error);
+        showErrorMessageNetwork();
+    }
 }
 
 
@@ -90,26 +82,29 @@ function renderPokemonCardDialog(pokemonDetails) {
 }
 
 
-// (ONCLICK) Öffnet den Dialog und füllt ihn mit den Pokémon-Details
-async function openDialog(pokemonId) {
-    currentPokemonIndex = allPokemons.findIndex(pokemon => pokemon.id === pokemonId);
+async function openDialog(pokemonIndex) {
+    // Lade die Pokémon-Daten anhand des Index aus allPokemons
+    let pokemonDetails = await fetchPokemonDetails(allPokemons[pokemonIndex].url);
 
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
-    let pokemonDetails = await fetchPokemonDetails(url);
-
+    // Zeige die Details des Pokémon an
     renderPokemonCardDialog(pokemonDetails);
-    document.getElementById('hide_scrollbar').classList.add('hide_scrollbar');
+
+    // Speichere den aktuellen Index im Dialog-Element, damit wir wissen, wo wir sind
+    document.getElementById('dialog_pokemon_card').dataset.currentIndex = pokemonIndex;
+
+    hideScrollBar();
 }
 
 
 // Close Dialog (ONCLICK)
 function closeDialog() {
     document.getElementById('overlay').classList.add('d_none');
-    document.getElementById('hide_scrollbar').classList.remove('hide_scrollbar');
+   
+    showScrollBar();
 }
 
 
-// Run -> renderPokemonCardDialog func. ->  (ONCLICK)
+// Run -> renderPokemonCardDialog func. ->  (ONCLICK/STANDARD)
 async function renderPokemonMainInfoDialog(pokemonId) {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
     let pokemonDetails = await fetchPokemonDetails(url);
@@ -118,6 +113,7 @@ async function renderPokemonMainInfoDialog(pokemonId) {
     mainInfoContentRef.innerHTML = '';
     mainInfoContentRef.innerHTML = getMainInfoTemplate(pokemonDetails);
 }
+
 
 // (ONCLICK)
 async function renderPokemonStatsInfoDialog(pokemonId) {
@@ -151,32 +147,40 @@ function renderSkillBars(pokemonDetails) {
     document.getElementById('speed_bar').style.width = `${speedPercent}%`;
 }
 
-// (ONCLICK)
-async function showNextPokemon() {  // ******** Irgendwas stimmt hier nicht ?????
-    if (currentPokemonIndex < allPokemons.length - 1) {
-        currentPokemonIndex++;
-    } else {
-        currentPokemonIndex = 0;
+
+async function showNextPokemon() {
+    // Hole den aktuellen Index aus dem Dialog-Element
+    let currentIndex = parseInt(document.getElementById('dialog_pokemon_card').dataset.currentIndex);
+
+    // Berechne den Index des nächsten Pokémon
+    let nextIndex = currentIndex + 1;
+
+    // Wenn wir das letzte Pokémon erreicht haben, wieder zum ersten Pokémon springen
+    if (nextIndex >= allPokemons.length) {
+        nextIndex = 0;
     }
 
-    let pokemon = allPokemons[currentPokemonIndex];
-    let pokemonDetails = await fetchPokemonDetails(pokemon.url);
-
-    renderPokemonCardDialog(pokemonDetails);
+    // Zeige das nächste Pokémon an
+    openDialog(nextIndex);
 }
 
-// (ONCLICK)
-async function showPreviousPokemon() {    // ******** Irgendwas stimmt hier nicht ?????
-    if (currentPokemonIndex > 0) {
-        currentPokemonIndex--;  // 
-    } else {
-        currentPokemonIndex = allPokemons.length - 1;
+
+async function showPreviousPokemon() {
+    // Hole den aktuellen Index aus dem Dialog-Element
+    let currentIndex = parseInt(document.getElementById('dialog_pokemon_card').dataset.currentIndex);
+
+    // Berechne den Index des vorherigen Pokémon
+    let previousIndex = currentIndex - 1;
+
+    // Wenn wir beim ersten Pokémon sind, zum letzten Pokémon springen
+    if (previousIndex < 0) {
+        previousIndex = allPokemons.length - 1;      // Das letzte Pokémon hat den Index allPokemons.length - 1
     }
 
-    let pokemon = allPokemons[currentPokemonIndex];
-    let pokemonDetails = await fetchPokemonDetails(pokemon.url);
+    console.log(currentIndex);
 
-    renderPokemonCardDialog(pokemonDetails);
+    // Zeige das vorherige Pokémon an
+    openDialog(previousIndex);
 }
 
 
@@ -185,8 +189,7 @@ function startLoadingScreen() {
     let startLoadingScreen = document.getElementById('loading_screen');
     startLoadingScreen.classList.remove('d_none');
 
-    let hideScrollBar = document.getElementById('hide_scrollbar');
-    hideScrollBar.classList.add('hide_scrollbar');
+    hideScrollBar();
 }
 
 
@@ -195,8 +198,23 @@ function endLoadingScreen() {
     let endLoadingScreen = document.getElementById('loading_screen');
     endLoadingScreen.classList.add('d_none');
 
+    showScrollBar();
+
+    console.log("Ending loading screen");
+}
+
+
+// Show Scroll Bar
+function showScrollBar() {
+    let showScrollBar = document.getElementById('hide_scrollbar');
+    showScrollBar.classList.remove('hide_scrollbar');
+}
+
+
+// Hide Scroll Bar
+function hideScrollBar() {
     let hideScrollBar = document.getElementById('hide_scrollbar');
-    hideScrollBar.classList.remove('hide_scrollbar');
+    hideScrollBar.classList.add('hide_scrollbar');
 }
 
 
@@ -254,6 +272,22 @@ function closeErrorMessageNetwork() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // *************** EVO CHAIN
 /* async function fetchPokemonEvoChain() {
     let urlEvoChain = `https://pokeapi.co/api/v2/evolution-chain?limit=10000&offset=0`;
@@ -284,7 +318,7 @@ async function renderPokemonEvoInfoDialog() {
 //***************************** */
 
 
-/* // Funktion zum Abrufen der Evolutionskette für ein bestimmtes Pokémon
+ // Funktion zum Abrufen der Evolutionskette für ein bestimmtes Pokémon
 async function fetchPokemonEvolutionChain(pokemonId) {
     // 1. Hole die Pokémon-Spezies-Daten, um an die Evolutionskette zu kommen
     let speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`;
@@ -352,7 +386,7 @@ async function getEvoInfoTemplate(evolutionChain) {
     }
 
     return evoHtml;
-} */
+} 
 
 
 

@@ -37,3 +37,17 @@
     bottom: 0;
     right: 32px;
 }
+
+@media (max-width: 580px) {
+    .character-pika-icon {
+        height: 100px;
+        width: 60px;
+        right: 24px;
+    }
+  
+    .character-ash-icon {
+      height: 100px;
+      width: 100px;
+     
+    }
+  }

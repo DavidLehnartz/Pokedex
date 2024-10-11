@@ -6,7 +6,7 @@
 // Pokemon Card Template
 function getpokemonCardTemplate(pokemon) {
     return `
-            <div onclick="openDialog(${pokemon.id})"  class="card-container type-${pokemon.types[0].type.name}">  
+            <div onclick="openDialog(${pokemon.id})" class="card-container type-${pokemon.types[0].type.name}">  
                 <div class="card-header">
                     <h2>${pokemon.name}</h2>
                     <p># ${pokemon.id} </p> 
@@ -43,28 +43,34 @@ function getpokemonCardDialogTemplate(pokemon) {
                     <img onclick="showNextPokemon()" class="back-next-img" src="./assets/icons/forward.png" alt="forward">
                 </div>
                 <div class="dialog-card-type">
+                
                      <img class="type-icons-dialog" src="./assets/icons/${pokemon.types[0].type.name}.svg" 
                       alt="${pokemon.types[0].type.name} icon">
 
                     ${pokemon.types[1] ? `<img class="type-icons-dialog" src="./assets/icons/${pokemon.types[1].type.name}.svg" 
                       alt="${pokemon.types[1].type.name} icon"> ` : ''}
                 </div>
-            <div class="test">
                 <div class="dialog-pokemon-info-wrapper">
                     <div class="dialog-pokemon-info-btns-container">
-                      <button onclick="renderPokemonMainInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Main</button>
-                      <button onclick="renderPokemonStatsInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Stats</button>
-                      <button onclick="renderPokemonEvoInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Evo</button>
+                      <button 
+                        onclick="renderPokemonMainInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Main
+                      </button>
+                      <button 
+                        onclick="renderPokemonStatsInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Stats
+                      </button>
+                      <button 
+                        onclick="renderPokemonEvoInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Evo
+                      </button>
                     </div>
                 </div>
 
                 <div id="species_info"></div>
-
+<div class="close-btn-wrapper">
                    <button onclick="closeDialog()" class="dialog-btn">
                        Close
                    </button>
-            </div>
            </div>
+</div>
     `;
 }
 
@@ -141,7 +147,7 @@ function getErrorMessageTemplate() {
                   <h1 class="main-text">Ooops !</h1>
                   <p>Something went wrong. A network error occured.</p>
                   <div class="try-again-btn-wrapper">
-                    <buttonon click=" tryToGetPokemonAfterFail()" class="try-again-btn">
+                    <button onclick=" tryToGetPokemonAfterFail()" class="try-again-btn">
                       Try Again
                     </button>
                   </div>

@@ -1,0 +1,104 @@
+/* ERROR MESSAGE */
+
+
+.overlay-error-message {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.555);
+  }
+  
+  .dialog-error-message-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 2px solid #fffff0;
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: 350px;
+    background-color: #000000;
+    padding: 8px 16px;
+  }
+  
+  .close-img {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  .close-img:hover {
+    transition: transform 0.1s ease-in-out;
+    transform: scale(1.02);
+  }
+  
+  .error-icon {
+    width: 96px;
+    height: 96px;
+    margin-left: 24px;
+  }
+  
+  .main-text {
+    margin: 0px;
+    color: ivory;
+  }
+  
+  .error-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: red;
+    font-size: 16px;
+    padding: 24px;
+  }
+  
+  .try-again-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 35px;
+    color: ivory;
+    background: black;
+    border: 2px solid rgb(123, 22, 143);
+    border-radius: 100px;
+    padding: 8px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+  
+  .try-again-btn:hover {
+    transition: transform 0.1s ease-in-out;
+    transform: scale(1.02);
+  }
+
+
+  /* MEDIA QUERY */
+
+
+  @media(max-width:700px){
+    .dialog-error-message-wrapper{
+        width: 90%;
+    }
+  }
+
+  @media(max-width:500px){
+    .dialog-error-message-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+  }

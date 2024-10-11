@@ -1,7 +1,7 @@
 /***** LOADING SPINNER *****/
 
 .overlay-loading-spinner {
-  /* display: flex; */   /*    mit flex geht overlay bei d_none nicht weg !!! */
+  /*  display: flex; */  /*    mit flex geht overlay bei d_none nicht weg !!! */
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -19,7 +19,7 @@
 .loading-spinner {
   position: fixed;
   top: 25%;
-  left: 41%;
+  /* left: 41%; */
   transform: translate(-50%, -50%);
 
  /*  position: relative; */
@@ -29,7 +29,6 @@
   border-radius: 50%;
   border: 8px solid black;
   animation: spin 1.5s linear infinite;
-  margin-bottom: 120px;
 }
 
 .loading-spinner::before {
@@ -73,7 +72,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
   height: 100vh;
 }
 
@@ -119,6 +118,13 @@
   80%,
   100% {
     content: "...";
+  }
+}
+
+
+@media(max-width:380px){
+  .loading-text{
+    font-size: 48px;
   }
 }
 

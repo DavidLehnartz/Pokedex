@@ -24,39 +24,50 @@
     <link rel="stylesheet" href="./styles/overlay_dialog.css" />
     <link rel="stylesheet" href="./styles/loading_spinner.css" />
     <link rel="stylesheet" href="./styles/color_type.css" />
+    <link rel="stylesheet" href="./styles/error_message.css" />
+
+    <script src="./scripts/filter.js"></script>
     <script src="./scripts/templates.js"></script>
+    <script src="./script.js" defer></script>
   </head>
 
   <!-- 
 !!! TASKS !!!
-
-*** dialog pokemon durchklickbar, vorher und nächste
-*** suchfunktion ab drei buchstaben, werden pokemon angezeigt
 *** evo chain
-*** loading spinner problem mit der positionierung
-*** ERROR MESSAGE; WENN NETZWERKFEHLER
-*** responsive
 *** js, html, css überarbeiten und aufräumen
-*** mit firebase arbeiten? nicht sicher
 -->
 
   <body onload=" init()" id="hide_scrollbar">
-    <header class="header-wrapper div">
+    <header class="header-wrapper">
       <div class="header-content">
-        <img class="pokemon-icon" src="./assets/icons/pokemon_logo.png" />
-        <form action="">
-          <input type="text" required placeholder="Search your Pokemon..." />
-          <button class="header-btn">
-            <b>Search</b>
+        <img
+          class="pokemon-icon"
+          src="./assets/icons/pokemon_logo.png"
+          alt="pokemon icon"
+        />
+        <form>
+          <input
+            onkeyup="getMatchingPokemon()"
+            id="search_pokemon"
+            type="text"
+            required
+            placeholder="Search your Pokemon..."
+          />
+          <button onclick="clearInput()" class="header-btn">
+            <b>Clear</b>
           </button>
         </form>
       </div>
     </header>
     <div class="seperator"></div>
     <main>
-      <div id="loading_screen" class="overlay-loading-spinner d_none">
-        <div class="loading-spinner"></div>
+      <div id="no_pokemon_found" class="no-pokemon-found" style="display: none;">
+        <h1>No Pokemon Found</h1>
+      </div>
+
+      <div id="loading_screen" class="overlay-loading-spinner">
         <div class="loader-container">
+          <div class="loading-spinner"></div>
           <div class="loading-text">
             <span class="dots-start"></span>
             Loading
@@ -87,23 +98,21 @@
         </div>
       </div>
 
-      <div id="error_message" class="overlay-error-message">
+      <div id="error_message" class="overlay-error-message d_none">
         <div id="dialog_error_message">
-          <div class="dialog-error-message-wrapper">
-            <img
-              class="error-icon"
-              src="./assets/icons/warning.png"
-              alt="error"
-            />
+          <!--  <div class="dialog-error-message-wrapper">
+            <img class="error-icon" src="./assets/icons/warning.png" alt="error"/>
             <div class="error-text">
-                <img class="close-img" src="./assets/icons/close-white.png" alt="close">
+              <img onclick="closeErrorMessageNetwork()" class="close-img" src="./assets/icons/close-white.png" alt="close"/>
               <h1 class="main-text">Ooops !</h1>
               <p>Something went wrong. A network error occured.</p>
               <div class="try-again-btn-wrapper">
-                <button class="try-again-btn">Try Again</button>
+                <buttonon click=" tryToGetPokemonAfterFail()" class="try-again-btn">
+                  Try Again
+                </button>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -138,14 +147,17 @@
 
     <footer class="footer-wrapper div">
       <div class="footer-content div">
-        <img class="character-ash-icon" src="./assets/icons/ash.png" alt="" />
+        <img
+          class="character-ash-icon"
+          src="./assets/icons/ash.png"
+          alt="ash character"
+        />
         <img
           class="character-pika-icon"
           src="./assets/icons/pikachu.png"
-          alt=""
+          alt="pikachu character"
         />
       </div>
     </footer>
-    <script src="./script.js"></script>
   </body>
 </html>
