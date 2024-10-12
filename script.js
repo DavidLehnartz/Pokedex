@@ -2,13 +2,10 @@
 
 /* MAIN SCRIPT */
 
+
 let allPokemons = [];
-
 let offset = 0;
-
 let limit = 40;
-
-let evoChain = [];
 
 
 //Init (ONLOAD)
@@ -24,7 +21,7 @@ function loadPokemon() {
     } catch (error) {
         showErrorMessageNetwork();
         console.log(error);
-    } 
+    }
 }
 
 
@@ -37,10 +34,12 @@ async function fetchPokemonData() {
         allPokemons.push(...responseAsJson.results);
         renderPokemonCard(responseAsJson.results);
         offset += limit;
+        console.log(allPokemons);
+        
     } catch (error) {
         showErrorMessageNetwork();
         console.error(error);
-    } 
+    }
 }
 
 
@@ -50,11 +49,15 @@ async function fetchPokemonDetails(url) { // Gibt mir die detail daten wieder
         let response = await fetch(url);  // Detail-URL aufrufen
         if (!response.ok) throw new Error("Failed to fetch Pokemon details");
         let pokemonDetails = await response.json();  // detaildaten holen
+        console.log(pokemonDetails);
+        
         return await pokemonDetails;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         showErrorMessageNetwork();
     }
+    
+
 }
 
 
@@ -99,7 +102,7 @@ async function openDialog(pokemonIndex) {
 // Close Dialog (ONCLICK)
 function closeDialog() {
     document.getElementById('overlay').classList.add('d_none');
-   
+
     showScrollBar();
 }
 
@@ -128,6 +131,12 @@ async function renderPokemonStatsInfoDialog(pokemonId) {
         renderSkillBars(pokemonDetails);
     }, 100);  // Timeout von 100ms
 }
+
+
+// (ONCLICK)
+/* async function renderPokemonEvoChainDialog() {
+    
+} */
 
 
 // Run -> renderPokemonStatsInfoDialog func.
@@ -199,8 +208,6 @@ function endLoadingScreen() {
     endLoadingScreen.classList.add('d_none');
 
     showScrollBar();
-
-    console.log("Ending loading screen");
 }
 
 
@@ -227,12 +234,10 @@ function renderErrorMessage() {
 
 // Try To Get Pokemon After Problem Occured
 function tryToGetPokemonAfterFail() {
-    let hideScrollBar = document.getElementById('hide_scrollbar');
-    hideScrollBar.classList.remove('hide_scrollbar');
-
     let errorMessage = document.getElementById('error_message');
     errorMessage.classList.add('d_none');
 
+    showScrollBar();
     loadPokemon();
 }
 
@@ -257,137 +262,3 @@ function closeErrorMessageNetwork() {
     let hideScrollBar = document.getElementById('hide_scrollbar');
     hideScrollBar.classList.add('hide_scrollbar');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// *************** EVO CHAIN
-/* async function fetchPokemonEvoChain() {
-    let urlEvoChain = `https://pokeapi.co/api/v2/evolution-chain?limit=10000&offset=0`;
-    let response = await fetch(urlEvoChain);
-    let responseAsJson = await response.json();
-
-    console.log(responseAsJson);
-
-    evoChain.push(...responseAsJson.results);
-
-    console.table(evoChain);
-}
-
-
-async function renderPokemonEvoInfoDialog() {
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonId}`;
-    let pokemonDetails = await fetchPokemonDetails(url);
-
-    let evoInfoContentRef = document.getElementById('species_info');
-    evoInfoContentRef.innerHTML = '';
-    evoInfoContentRef.innerHTML = getEvoInfoTemplate(pokemonDetails);
-} */
-
-
-
-
-
-//***************************** */
-
-
- // Funktion zum Abrufen der Evolutionskette für ein bestimmtes Pokémon
-async function fetchPokemonEvolutionChain(pokemonId) {
-    // 1. Hole die Pokémon-Spezies-Daten, um an die Evolutionskette zu kommen
-    let speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`;
-    let speciesResponse = await fetch(speciesUrl);
-    let speciesData = await speciesResponse.json();
-    
-    // 2. Hole die Evolution-Chain-Daten von der URL, die in den Species-Daten steht
-    let evolutionChainUrl = speciesData.evolution_chain.url;
-    let evolutionResponse = await fetch(evolutionChainUrl);
-    let evolutionData = await evolutionResponse.json();
-
-    return evolutionData;
-}
-
-
-async function fetchPokemonDetailsByName(pokemonName) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-    let response = await fetch(url);
-    let pokemonDetails = await response.json();
-
-    return pokemonDetails;
-}
-
-
-async function renderPokemonEvoInfoDialog(pokemonId) {
-    // Hole die Evolutionskette für das ausgewählte Pokémon
-    let evolutionChain = await fetchPokemonEvolutionChain(pokemonId);
-
-    // Erstelle das HTML für die Evolutionskette
-    let evoHtml = await getEvoInfoTemplate(evolutionChain);
-
-    // Setze die Evolutionskette ins HTML
-    let evoInfoContentRef = document.getElementById('species_info');
-    evoInfoContentRef.innerHTML = ''; // Leere den Bereich für neue Inhalte
-    evoInfoContentRef.innerHTML = evoHtml; // Setze die Evolution Chain ins HTML
-}
-
-
-
-
-async function getEvoInfoTemplate(evolutionChain) {
-    let evoHtml = '';
-
-    let currentEvo = evolutionChain.chain;
-
-    // Basis-Pokémon (erste Entwicklungsstufe) mit Bild und Name
-    let basePokemon = await fetchPokemonDetailsByName(currentEvo.species.name);
-    evoHtml += `
-        <div class="evo-stage">
-            <img src="${basePokemon.sprites.other['official-artwork'].front_default}" alt="${currentEvo.species.name}">
-            <p>${currentEvo.species.name}</p>
-        </div>`;
-
-    // Gehe durch die Evolutionsstufen
-    while (currentEvo.evolves_to.length > 0) {
-        currentEvo = currentEvo.evolves_to[0];  // Nächste Stufe der Evolution
-        let nextEvo = await fetchPokemonDetailsByName(currentEvo.species.name);  // Details der nächsten Evolution
-
-        evoHtml += `<div class="evo-arrow">→</div>`;
-        evoHtml += `
-            <div class="evo-stage">
-                <img src="${nextEvo.sprites.other['official-artwork'].front_default}" alt="${currentEvo.species.name}">
-                <p>${currentEvo.species.name}</p>
-            </div>`;
-    }
-
-    return evoHtml;
-} 
-
-
-
-

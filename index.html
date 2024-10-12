@@ -28,14 +28,9 @@
 
     <script src="./scripts/filter.js"></script>
     <script src="./scripts/templates.js"></script>
+    <script src="./scripts/evolution_chain.js"></script>
     <script src="./script.js" defer></script>
   </head>
-
-  <!-- 
-!!! TASKS !!!
-*** evo chain
-*** js, html, css überarbeiten und aufräumen
--->
 
   <body onload=" init()" id="hide_scrollbar">
     <header class="header-wrapper">
@@ -59,9 +54,11 @@
         </form>
       </div>
     </header>
+
     <div class="seperator"></div>
+
     <main>
-      <div id="no_pokemon_found" class="no-pokemon-found" style="display: none;">
+      <div id="no_pokemon_found" class="no-pokemon-found" style="display: none">
         <h1>No Pokemon Found</h1>
       </div>
 
@@ -77,67 +74,17 @@
       </div>
 
       <div onclick="closeDialog()" id="overlay" class="overlay d_none">
-        <div onclick="event.stopPropagation()" id="dialog_pokemon_card">
-          <!--  <div class="dialog-pokemon-container">
-                    <div class="dialog-card-header">
-                        <h2>${pokemon.name}</h2>
-                        <p># ${pokemon.id}</p>
-                    </div>
-                    <div class="dialog-pokemon-image-wrapper">
-                        <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}"
-                            alt="${pokemon.name} image">
-                    </div>
-                    <div class="dialog-card-footer">
-                        ${pokemon.types[0].type.name}
-                        ${pokemon.types[0].type.name}
-                    </div>
-                    <button>
-                        Close
-                    </button>
-                </div> -->
-        </div>
+        <div onclick="event.stopPropagation()" id="dialog_pokemon_card"></div>
       </div>
 
       <div id="error_message" class="overlay-error-message d_none">
-        <div id="dialog_error_message">
-          <!--  <div class="dialog-error-message-wrapper">
-            <img class="error-icon" src="./assets/icons/warning.png" alt="error"/>
-            <div class="error-text">
-              <img onclick="closeErrorMessageNetwork()" class="close-img" src="./assets/icons/close-white.png" alt="close"/>
-              <h1 class="main-text">Ooops !</h1>
-              <p>Something went wrong. A network error occured.</p>
-              <div class="try-again-btn-wrapper">
-                <buttonon click=" tryToGetPokemonAfterFail()" class="try-again-btn">
-                  Try Again
-                </button>
-              </div>
-            </div>
-          </div> -->
-        </div>
+        <div id="dialog_error_message"></div>
       </div>
 
       <h1>PokeDex</h1>
-      <div id="pokemon_card" class="card-content-wrapper">
-        <!-- <div class="card-container type-${pokemon.types[0].type.name}">  
-                <div class="card-header">
-                    <h2>${pokemon.name}</h2>
-                    <p># ${pokemon.id} </p> 
-                </div>
-                <div class="pokemon-image-wrapper"> 
-                   <img class="pokemon-image" src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name} image">
-                </div>
-                <div class="card-footer">  
-                ${pokemon.types[0].type.name}
-                ${pokemon.types[0].type.name}
-                </div>
-            </div> -->
-      </div>
+      <div id="pokemon_card" class="card-content-wrapper"></div>
       <div class="load-more-btn-wrapper">
-        <button
-          onclick="loadPokemon()"
-          id="load_more_btn"
-          class="load-more-btn"
-        >
+        <button onclick="loadPokemon()" id="load_more_btn" class="load-more-btn">
           Load More
         </button>
       </div>

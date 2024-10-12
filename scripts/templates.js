@@ -37,10 +37,12 @@ function getpokemonCardDialogTemplate(pokemon) {
                     <p># ${pokemon.id}</p>
                 </div>
                 <div class="dialog-pokemon-image-wrapper">
-                    <img onclick="showPreviousPokemon()" class="back-next-img" src="./assets/icons/backward.png" alt="backward">
+                    <img onclick="showPreviousPokemon()" class="back-next-img" src="./assets/icons/backward.png" 
+                        alt="backward">
                     <img class="pokemon-image-dialog" src="${pokemon.sprites.other.dream_world.front_default}"
                         alt="${pokemon.name} image">
-                    <img onclick="showNextPokemon()" class="back-next-img" src="./assets/icons/forward.png" alt="forward">
+                    <img onclick="showNextPokemon()" class="back-next-img" src="./assets/icons/forward.png" 
+                        alt="forward">
                 </div>
                 <div class="dialog-card-type">
                 
@@ -53,24 +55,25 @@ function getpokemonCardDialogTemplate(pokemon) {
                 <div class="dialog-pokemon-info-wrapper">
                     <div class="dialog-pokemon-info-btns-container">
                       <button 
-                        onclick="renderPokemonMainInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Main
+                        onclick="renderPokemonMainInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">
+                        Main
                       </button>
                       <button 
-                        onclick="renderPokemonStatsInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Stats
+                        onclick="renderPokemonStatsInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">
+                        Stats
                       </button>
-                      <button 
-                        onclick="renderPokemonEvoInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">Evo
-                      </button>
+                     
                     </div>
                 </div>
 
                 <div id="species_info"></div>
-<div class="close-btn-wrapper">
-                   <button onclick="closeDialog()" class="dialog-btn">
+
+                <div class="close-btn-wrapper">
+                    <button onclick="closeDialog()" class="dialog-btn">
                        Close
-                   </button>
-           </div>
-</div>
+                    </button>
+                </div>
+            </div>
     `;
 }
 
@@ -158,8 +161,8 @@ function getErrorMessageTemplate() {
 
 
 // Render Evo Chain In Dialog
-function getEvoInfoTemplate(pokemon) {
+/* function getEvoInfoTemplate(pokemon) {
     return `
    
 `;
-}
+} */
