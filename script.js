@@ -19,7 +19,7 @@ function loadPokemon() {
     try {
         fetchPokemonData();
     } catch (error) {
-        showErrorMessageNetwork();
+        toggleErrorMessageNetwork();
         console.log(error);
     }
 }
@@ -27,7 +27,7 @@ function loadPokemon() {
 
 // Fetch Standard Data
 async function fetchPokemonData() {
-    startLoadingScreen();
+    toggleLoadingScreen();
     try {
         let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
         let response = await fetch(url);
@@ -40,7 +40,7 @@ async function fetchPokemonData() {
         offset += limit;
 
     } catch (error) {
-        showErrorMessageNetwork();
+        toggleErrorMessageNetwork();
         console.error(error);
     }
 }
@@ -57,7 +57,7 @@ async function fetchPokemonDetails(url) {
         return await pokemonDetails;
     } catch (error) {
         console.error(error);
-        showErrorMessageNetwork();
+        toggleErrorMessageNetwork();
     }
 }
 
@@ -70,7 +70,7 @@ async function renderPokemonCard(allPokemons) {
         let pokemonDetails = await fetchPokemonDetails(allPokemons[indexPokeCard].url);
         pokemonCardRef.innerHTML += getpokemonCardTemplate(pokemonDetails);
     }
-    endLoadingScreen();
+    toggleLoadingScreen();
 }
 
 
@@ -84,6 +84,14 @@ function renderPokemonCardDialog(pokemonDetails) {
     document.getElementById('overlay').classList.remove('d_none');
 }
 
+
+// Render Error Message Network
+function renderErrorMessage() {
+    let errorMessage = document.getElementById('dialog_error_message');
+    errorMessage.innerHTML = getErrorMessageTemplate();
+}
+
+
 // Open Dialog (ONCLICK)
 async function openDialog(pokemonIndex) {
     let pokemonDetails = await fetchPokemonDetails(allPokemons[pokemonIndex].url);
@@ -91,8 +99,7 @@ async function openDialog(pokemonIndex) {
     renderPokemonCardDialog(pokemonDetails);
 
     document.getElementById('dialog_pokemon_card').dataset.currentIndex = pokemonIndex;
-
-    hideScrollBar();
+    document.getElementById('hide_scrollbar').classList.add('hide_scrollbar');
 }
 
 
@@ -100,7 +107,7 @@ async function openDialog(pokemonIndex) {
 function closeDialog() {
     document.getElementById('overlay').classList.add('d_none');
 
-    showScrollBar();
+    toggleScrollBar();
 }
 
 
@@ -155,7 +162,6 @@ async function showNextPokemon() {
     if (nextIndex >= allPokemons.length) {
         nextIndex = 0;
     }
-
     openDialog(nextIndex);
 }
 
@@ -165,49 +171,37 @@ async function showPreviousPokemon() {
     let previousIndex = currentIndex - 1;
 
     if (previousIndex < 0) {
-        previousIndex = allPokemons.length - 1; 
+        previousIndex = allPokemons.length - 1;
     }
-
     openDialog(previousIndex);
 }
 
 
-// Start Loading Screen
-function startLoadingScreen() {
-    let startLoadingScreen = document.getElementById('loading_screen');
-    startLoadingScreen.classList.remove('d_none');
+// Toggle Loading Screen
+function toggleLoadingScreen() {
+    let loadingScreen = document.getElementById('loading_screen');
+    loadingScreen.classList.toggle('d_none');
 
-    hideScrollBar();
+    toggleScrollBar();
 }
 
 
-// End Loading Screen
-function endLoadingScreen() {
-    let endLoadingScreen = document.getElementById('loading_screen');
-    endLoadingScreen.classList.add('d_none');
-
-    showScrollBar();
+// Toggle Scroll Bar
+function toggleScrollBar() {
+    let scrollBar = document.getElementById('hide_scrollbar');
+    scrollBar.classList.toggle('hide_scrollbar');
 }
 
 
-// Show Scroll Bar
-function showScrollBar() {
-    let showScrollBar = document.getElementById('hide_scrollbar');
-    showScrollBar.classList.remove('hide_scrollbar');
-}
+//  Toogle Error Message
+function toggleErrorMessageNetwork() {
+    let errorMessage = document.getElementById('error_message');
+    errorMessage.classList.toggle('d_none');
 
-
-// Hide Scroll Bar
-function hideScrollBar() {
     let hideScrollBar = document.getElementById('hide_scrollbar');
-    hideScrollBar.classList.add('hide_scrollbar');
-}
+    hideScrollBar.classList.toggle('hide_scrollbar');
 
-
-// Render Error Message Network
-function renderErrorMessage() {
-    let errorMessage = document.getElementById('dialog_error_message');
-    errorMessage.innerHTML = getErrorMessageTemplate();
+    renderErrorMessage();
 }
 
 
@@ -216,28 +210,6 @@ function tryToGetPokemonAfterFail() {
     let errorMessage = document.getElementById('error_message');
     errorMessage.classList.add('d_none');
 
-    showScrollBar();
+    toggleScrollBar();
     loadPokemon();
-}
-
-
-// Show Error Message Network
-function showErrorMessageNetwork() {
-    let errorMessage = document.getElementById('error_message');
-    errorMessage.classList.remove('d_none');
-
-    let hideScrollBar = document.getElementById('hide_scrollbar');
-    hideScrollBar.classList.add('hide_scrollbar');
-
-    renderErrorMessage();
-}
-
-
-// (ONCLICK)
-function closeErrorMessageNetwork() {
-    let errorMessage = document.getElementById('error_message');
-    errorMessage.classList.add('d_none');
-
-    let hideScrollBar = document.getElementById('hide_scrollbar');
-    hideScrollBar.classList.add('hide_scrollbar');
 }
