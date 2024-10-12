@@ -62,7 +62,6 @@ function getpokemonCardDialogTemplate(pokemon) {
                         onclick="renderPokemonStatsInfoDialog(${pokemon.id})" class="dialog-pokemon-info-btns">
                         Stats
                       </button>
-                     
                     </div>
                 </div>
 
@@ -108,34 +107,34 @@ function getMainInfoTemplate(pokemon) {
 // Render Stats Info In Dialog
 function getStatsInfoTemplate(pokemon) {
     return `
-                <table class="species-stats-wrapper">
-                    <tbody>
-                        <tr class="tr-stats-info">
-                            <td class="td-stats-info-left">${pokemon.stats[0].stat.name}:</td>
-                            <td class="td-stats-info-right">
-                             <div id="hp_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
-                            </td>
-                        </tr>
-                        <tr class="tr-stats-info">
-                            <td class="td-stats-info-left">${pokemon.stats[1].stat.name}:</td>
-                            <td class="td-stats-info-right">
-                             <div id="attack_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
-                            </td>
-                        </tr>
-                        <tr class="tr-stats-info">
-                            <td class="td-stats-info-left">${pokemon.stats[2].stat.name}:</td>
-                            <td class="td-stats-info-right">
-                             <div id="defense_bar"  class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
-                            </td>
-                        </tr>    
-                        <tr class="tr-stats-info">
-                            <td class="td-stats-info-left">${pokemon.stats[5].stat.name}:</td>
-                            <td class="td-stats-info-right">
-                             <div id="speed_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>            
+            <table class="species-stats-wrapper">
+                <tbody>
+                    <tr class="tr-stats-info">
+                        <td class="td-stats-info-left">${pokemon.stats[0].stat.name}:</td>
+                        <td class="td-stats-info-right">
+                         <div id="hp_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                        </td>
+                    </tr>
+                    <tr class="tr-stats-info">
+                        <td class="td-stats-info-left">${pokemon.stats[1].stat.name}:</td>
+                        <td class="td-stats-info-right">
+                         <div id="attack_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                        </td>
+                    </tr>
+                    <tr class="tr-stats-info">
+                        <td class="td-stats-info-left">${pokemon.stats[2].stat.name}:</td>
+                        <td class="td-stats-info-right">
+                         <div id="defense_bar"  class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                        </td>
+                    </tr>    
+                    <tr class="tr-stats-info">
+                        <td class="td-stats-info-left">${pokemon.stats[5].stat.name}:</td>
+                        <td class="td-stats-info-right">
+                         <div id="speed_bar" class="skill-bar-fill type-${pokemon.types[0].type.name}"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>            
     `;
 }
 
@@ -158,11 +157,3 @@ function getErrorMessageTemplate() {
            </div>
     `;
 }
-
-
-// Render Evo Chain In Dialog
-/* function getEvoInfoTemplate(pokemon) {
-    return `
-   
-`;
-} */

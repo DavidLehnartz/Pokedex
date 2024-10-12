@@ -1,7 +1,7 @@
 /***** LOADING SPINNER *****/
 
+
 .overlay-loading-spinner {
-  /*  display: flex; */  /*    mit flex geht overlay bei d_none nicht weg !!! */
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -19,10 +19,7 @@
 .loading-spinner {
   position: fixed;
   top: 25%;
-  /* left: 41%; */
   transform: translate(-50%, -50%);
-
- /*  position: relative; */
   height: 200px;
   width: 200px;
   background: linear-gradient(to bottom, rgb(254, 0, 1) 50%, white 50%);
@@ -30,6 +27,7 @@
   border: 8px solid black;
   animation: spin 1.5s linear infinite;
 }
+
 
 .loading-spinner::before {
   content: "";
@@ -40,6 +38,7 @@
   top: 100px;
   transform: translatey(-50%);
 }
+
 
 .loading-spinner::after {
   content: "";
@@ -55,7 +54,10 @@
     inset 0 0 0 12px black;
 }
 
+
 /* Spin Animation */
+
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -68,13 +70,14 @@
 
 /***** LOADING TEXT *****/
 
+
 .loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
   height: 100vh;
 }
+
 
 .loading-text {
   font-size: 56px;
@@ -83,6 +86,7 @@
   color: ivory;
   margin-top: 250px;
 }
+
 
 .dots::after {
   content: "";
@@ -94,7 +98,6 @@
 }
 
 
-
 .dots-start::before {
     content: "";
     display: inline-block;
@@ -103,6 +106,10 @@
     animation: dots 1.5s steps(4, end) infinite;
     color: ivory;
   }
+
+
+  /* Dots Animation */
+
 
 @keyframes dots {
   0%,
@@ -122,11 +129,11 @@
 }
 
 
+/* MEDIA QUERY */
+
+
 @media(max-width:380px){
   .loading-text{
     font-size: 48px;
   }
 }
-
-
-

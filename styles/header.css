@@ -1,50 +1,50 @@
 /* HEADER */
 
+
 .header-wrapper {
-    /* display: flex; */
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 96px;
-    gap: 100px;
-    background-color: rgb(0, 0, 0);
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 96px;
+  gap: 100px;
+  background-color: rgb(0, 0, 0);
 }
 
 
 .header-content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0px auto;
-    padding: 8px 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px auto;
+  padding: 8px 24px;
 }
 
 
 input {
-    font-size: 14px;
-    font-weight: bold;
-    color: #3758A3;
-    border-radius: 16px;
-    border: 2px solid #3758A3;
-    padding: 8px 32px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #3758a3;
+  border-radius: 16px;
+  border: 2px solid #3758a3;
+  padding: 8px 32px;
 }
 
 
 .header-btn {
-    color: #FFCB08;
-    background-color: #3758A3;
-    border-radius: 16px;
-    border: 2px solid whitesmoke;
-    border: 2px solid #FFCB08;
-    padding: 6px 32px;
-    font-size: 16px;
+  color: #ffcb08;
+  background-color: #3758a3;
+  border-radius: 16px;
+  border: 2px solid whitesmoke;
+  border: 2px solid #ffcb08;
+  padding: 6px 32px;
+  font-size: 16px;
 }
 
 
 .header-btn:hover {
-    cursor: pointer;
-    transition: transform 0.5s ease-in-out;
-    transform: scale(1.05);
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+  transform: scale(1.05);
 }
 
 
@@ -52,45 +52,29 @@ input {
 
 
 @media (max-width: 580px) {
-    .header-wrapper{
-        display: flex;
-        padding: 16px 0px;
-    }
-
-    .header-content{
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .pokemon-icon{
-        width: 100px;
-        height: auto;
-    }
-
-    input{
-  padding: 4px 16px;
-  font-size: 12px;
-    }
-
-    .header-btn{
-        padding: 3px 16px;
-        font-size: 12px;
-    }
+  .header-wrapper {
+    display: flex;
+    padding: 16px 0px;
   }
 
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-  /* @media (max-width: 430px) {
-    input{
-  padding: 0px 8px;
-    }
+  .pokemon-icon {
+    width: 100px;
+    height: auto;
+  }
 
-    .header-btn{
-        padding: 1px 8px;
-    }
+  input {
+    padding: 4px 16px;
+    font-size: 12px;
+  }
 
-    .pokemon-icon{
-        width: 80px;
-        height: auto;
-    }
-  } */
+  .header-btn {
+    padding: 3px 16px;
+    font-size: 12px;
+  }
+}

@@ -25,17 +25,20 @@ function loadPokemon() {
 }
 
 
+// Fetch Standard Data
 async function fetchPokemonData() {
     startLoadingScreen();
     try {
         let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
         let response = await fetch(url);
         let responseAsJson = await response.json();
+
         allPokemons.push(...responseAsJson.results);
+
         renderPokemonCard(responseAsJson.results);
+
         offset += limit;
-        console.log(allPokemons);
-        
+
     } catch (error) {
         showErrorMessageNetwork();
         console.error(error);
@@ -43,31 +46,28 @@ async function fetchPokemonData() {
 }
 
 
-// Fetch Pokemon Details Test ******************
-async function fetchPokemonDetails(url) { // Gibt mir die detail daten wieder
+// Fetch Pokemon Details
+async function fetchPokemonDetails(url) {
     try {
-        let response = await fetch(url);  // Detail-URL aufrufen
+        let response = await fetch(url);
+
         if (!response.ok) throw new Error("Failed to fetch Pokemon details");
-        let pokemonDetails = await response.json();  // detaildaten holen
-        console.log(pokemonDetails);
-        
+        let pokemonDetails = await response.json();
+
         return await pokemonDetails;
     } catch (error) {
         console.error(error);
         showErrorMessageNetwork();
     }
-    
-
 }
 
 
 // Run -> fetchPokeData func.
 async function renderPokemonCard(allPokemons) {
     let pokemonCardRef = document.getElementById('pokemon_card');
-    /* pokemonCardRef.innerHTML = ''; */
 
     for (let indexPokeCard = 0; indexPokeCard < allPokemons.length; indexPokeCard++) {
-        let pokemonDetails = await fetchPokemonDetails(allPokemons[indexPokeCard].url);  // holt die details für jedes pokemon
+        let pokemonDetails = await fetchPokemonDetails(allPokemons[indexPokeCard].url);
         pokemonCardRef.innerHTML += getpokemonCardTemplate(pokemonDetails);
     }
     endLoadingScreen();
@@ -84,15 +84,12 @@ function renderPokemonCardDialog(pokemonDetails) {
     document.getElementById('overlay').classList.remove('d_none');
 }
 
-
+// Open Dialog (ONCLICK)
 async function openDialog(pokemonIndex) {
-    // Lade die Pokémon-Daten anhand des Index aus allPokemons
     let pokemonDetails = await fetchPokemonDetails(allPokemons[pokemonIndex].url);
 
-    // Zeige die Details des Pokémon an
     renderPokemonCardDialog(pokemonDetails);
 
-    // Speichere den aktuellen Index im Dialog-Element, damit wir wissen, wo wir sind
     document.getElementById('dialog_pokemon_card').dataset.currentIndex = pokemonIndex;
 
     hideScrollBar();
@@ -129,14 +126,8 @@ async function renderPokemonStatsInfoDialog(pokemonId) {
 
     setTimeout(() => {
         renderSkillBars(pokemonDetails);
-    }, 100);  // Timeout von 100ms
+    }, 100);
 }
-
-
-// (ONCLICK)
-/* async function renderPokemonEvoChainDialog() {
-    
-} */
 
 
 // Run -> renderPokemonStatsInfoDialog func.
@@ -156,39 +147,27 @@ function renderSkillBars(pokemonDetails) {
     document.getElementById('speed_bar').style.width = `${speedPercent}%`;
 }
 
-
+// (ONCLICK)
 async function showNextPokemon() {
-    // Hole den aktuellen Index aus dem Dialog-Element
     let currentIndex = parseInt(document.getElementById('dialog_pokemon_card').dataset.currentIndex);
-
-    // Berechne den Index des nächsten Pokémon
     let nextIndex = currentIndex + 1;
 
-    // Wenn wir das letzte Pokémon erreicht haben, wieder zum ersten Pokémon springen
     if (nextIndex >= allPokemons.length) {
         nextIndex = 0;
     }
 
-    // Zeige das nächste Pokémon an
     openDialog(nextIndex);
 }
 
-
+// (ONCLICK)
 async function showPreviousPokemon() {
-    // Hole den aktuellen Index aus dem Dialog-Element
     let currentIndex = parseInt(document.getElementById('dialog_pokemon_card').dataset.currentIndex);
-
-    // Berechne den Index des vorherigen Pokémon
     let previousIndex = currentIndex - 1;
 
-    // Wenn wir beim ersten Pokémon sind, zum letzten Pokémon springen
     if (previousIndex < 0) {
-        previousIndex = allPokemons.length - 1;      // Das letzte Pokémon hat den Index allPokemons.length - 1
+        previousIndex = allPokemons.length - 1; 
     }
 
-    console.log(currentIndex);
-
-    // Zeige das vorherige Pokémon an
     openDialog(previousIndex);
 }
 
@@ -242,7 +221,7 @@ function tryToGetPokemonAfterFail() {
 }
 
 
-//Show Error Message Network
+// Show Error Message Network
 function showErrorMessageNetwork() {
     let errorMessage = document.getElementById('error_message');
     errorMessage.classList.remove('d_none');
@@ -254,7 +233,7 @@ function showErrorMessageNetwork() {
 }
 
 
-// Close Error Message Network
+// (ONCLICK)
 function closeErrorMessageNetwork() {
     let errorMessage = document.getElementById('error_message');
     errorMessage.classList.add('d_none');

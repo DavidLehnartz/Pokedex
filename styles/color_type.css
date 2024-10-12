@@ -1,109 +1,109 @@
-
 /* Pokemon Types CSS */
 
+
 .type-grass {
-    background-color:#7AC74C; /* Grün */
+    background-color:#7AC74C; 
     color: white;
 }
 
 
 .type-fire {
-    background-color: #C22E28; /* Rot-Orange */
+    background-color: #C22E28;
     color: white;
 }
 
 
 .type-water {
-    background-color: #6390F0; /* Blau */
+    background-color: #6390F0; 
     color: white;
 }
 
 
 .type-electric {
-    background-color: #F7D02C; /* Gelb */
+    background-color: #F7D02C; 
     color: black;
 }
 
 
 .type-ice {
-    background-color: #96D9D6; /* Hellblau */
+    background-color: #96D9D6; 
     color: black;
 }
 
 
 .type-fighting {
-    background-color:#EE8130; /* Rotbraun */
+    background-color:#EE8130; 
     color: white;
 }
 
 
 .type-poison {
-    background-color: #A33EA1; /* Lila */
+    background-color: #A33EA1; 
     color: white;
 }
 
 
 .type-ground {
-    background-color: #E2BF65; /* Sandgelb */
+    background-color: #E2BF65; 
     color: black;
 }
 
 
 .type-flying {
-    background-color: #A98FF3; /* Hellviolett */
+    background-color: #A98FF3; 
     color: black;
 }
 
 
 .type-psychic {
-    background-color: #F95587; /* Rosa */
+    background-color: #F95587; 
     color: white;
 }
 
 
 .type-bug {
-    background-color: #A8B820; /* Olivgrün */
+    background-color: #A8B820; 
     color: black;
 }
 
 
 .type-rock {
-    background-color: #B6A136; /* Braun */
+    background-color: #B6A136; 
     color: black;
 }
 
 
 .type-ghost {
-    background-color: #735797; /* Dunkellila */
+    background-color: #735797; 
     color: white;
 }
 
 
 .type-dragon {
-    background-color: #6F35FC; /* Dunkelviolett */
+    background-color: #6F35FC; 
     color: white;
 }
 
 
 .type-dark {
-    background-color: #705746; /* Dunkelbraun */
+    background-color: #705746; 
     color: white;
 }
 
 
 .type-steel {
-    background-color: #B7B7CE; /* Hellgrau */
+    background-color: #B7B7CE;
     color: black;
 }
 
 
 .type-fairy {
-    background-color: #D685AD; /* Hellrosa */
+    background-color: #D685AD; 
     color: black;
 }
 
 
 .type-normal {
-    background-color: #A8A77A; /* Hellrosa */
+    background-color: #A8A77A; 
     color: black;
 }
